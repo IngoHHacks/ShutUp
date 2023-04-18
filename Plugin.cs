@@ -2,6 +2,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using System;
 using System.IO;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace ShutUp
     {
         public const string PluginGuid = "IngoH.WrestlingEmpire.ShutUp";
         public const string PluginName = "ShutUp";
-        public const string PluginVer = "1.0.0";
+        public const string PluginVer = "1.1.0";
 
         internal static ManualLogSource Log;
         internal readonly static Harmony Harmony = new(PluginGuid);
@@ -49,33 +50,33 @@ namespace ShutUp
         private static bool _lock = false;
         private static long _lastSkip = 0;
         
-        [HarmonyPatch(typeof(HJBJPCDFLGL), "EKPJDDCHBFC")]
+        [HarmonyPatch(typeof(ANKJMHMKLPJ), nameof(ANKJMHMKLPJ.AOOPBBMLNMB))]
         [HarmonyPostfix]
-        private static void HJBJPCDFLGL_EKPJDDCHBFC()
+        private static void ANKJMHMKLPJ_EKPJDDCHBFC()
         {
-            AMPJKOHMNJK aMPJKOHMNJK = JINPJBLJOMA.NDCGFCAFBIB[JINPJBLJOMA.JHPHBHFGAMD];
-            if (HJBJPCDFLGL.NAGCDENHJNE > 0 && KPGIEHHDIDA.LHOICDLLMID == 50 && NODLGBMEKCI.NMOJJPKABCC[HJBJPCDFLGL.NAGCDENHJNE].MHCGLBLHDML.GACPHBMEHOE >= 5)
+            FMOKFGNFBEL obj = KDAEEMPNIHH.PIMOFAAHKMI[KDAEEMPNIHH.HGPLPDFJEBC];
+            if (ANKJMHMKLPJ.DNNAOLIENKK > 0 && LAHGBLEJCEO.GLDIFJOEOIO == 50 && DGCPHFIBPHC.KHMKIGPJPHN[ANKJMHMKLPJ.DNNAOLIENKK].KEMOICEBDOF.DPDEPJEGFMC >= 5)
             {
-                aMPJKOHMNJK = NODLGBMEKCI.NMOJJPKABCC[HJBJPCDFLGL.NAGCDENHJNE].MHCGLBLHDML;
+                obj = DGCPHFIBPHC.KHMKIGPJPHN[ANKJMHMKLPJ.DNNAOLIENKK].KEMOICEBDOF;
             }
-            if (HJBJPCDFLGL.IMJHHKJLPBC == 0)
+            if (ANKJMHMKLPJ.JECKILHMDHE == 0)
             {
                 int num2 = 0;
-                if (aMPJKOHMNJK.PGCCLPMAFMA[1] != 0 || aMPJKOHMNJK.PGCCLPMAFMA[2] != 0 || aMPJKOHMNJK.PGCCLPMAFMA[3] != 0 || aMPJKOHMNJK.PGCCLPMAFMA[4] != 0 || aMPJKOHMNJK.CCPDCCAPCEG != 0 || aMPJKOHMNJK.EHIEBJHCNIB != 0)
+                if (obj.EKJFOHFFANP[1] != 0 || obj.EKJFOHFFANP[2] != 0 || obj.EKJFOHFFANP[3] != 0 || obj.EKJFOHFFANP[4] != 0 || obj.KNOFLDDCJMA != 0 || obj.JGLBABPLBNG != 0)
                 {
                     num2 = 1;
                 }
-                if (((JINPJBLJOMA.OIDLNCJOFLC == 1f && JINPJBLJOMA.LFNHGLIBNAK < Screen.height * 0.3f) || num2 != 0 || Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(0)) && JINPJBLJOMA.ALBIPGOEJLM == 0f)
+                if (((Math.Abs(KDAEEMPNIHH.EPGMPBANIGI - 1f) < 0.0001f && KDAEEMPNIHH.JJNHKOIGFMO < Screen.height * 0.3f) || num2 != 0 || Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(0)) && KDAEEMPNIHH.PKCABBMAGNE == 0f)
                 {
                     if (!LockAfterSkip.Value || !_lock ||
-                        (System.DateTime.Now.Ticks / 10000) - _lastSkip > LockDelay.Value)
+                        (DateTime.Now.Ticks / 10000) - _lastSkip > LockDelay.Value)
                     {
-                        HJBJPCDFLGL.OKILOINLLAO++;
-                        HJBJPCDFLGL.IAOODIBGNFI = 0f;
+                        ANKJMHMKLPJ.AGAGHGBLCDA++;
+                        ANKJMHMKLPJ.AHKCECADCAM = 0f;
                         if (LockAfterSkip.Value)
                         {
                             _lock = true;
-                            _lastSkip = System.DateTime.Now.Ticks / 10000;
+                            _lastSkip = DateTime.Now.Ticks / 10000;
                         }
                     }
                 }
