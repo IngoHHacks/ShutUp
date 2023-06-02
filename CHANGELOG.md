@@ -1,4 +1,7 @@
-﻿# Changelog
+# Changelog
+
+## 1.2.0
+- UPDATE TO GAME VERSION 1.58
 
 ## 1.1.0
 - UPDATE TO GAME VERSION 1.56
