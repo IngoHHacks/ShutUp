@@ -14,7 +14,7 @@ namespace ShutUp
     {
         public const string PluginGuid = "IngoH.WrestlingEmpire.ShutUp";
         public const string PluginName = "ShutUp";
-        public const string PluginVer = "1.2.0";
+        public const string PluginVer = "1.3.0";
 
         internal static ManualLogSource Log;
         internal readonly static Harmony Harmony = new(PluginGuid);
@@ -31,8 +31,8 @@ namespace ShutUp
 
             PluginPath = Path.GetDirectoryName(Info.Location);
             
-            LockAfterSkip = Config.Bind("General", "LockAfterSkip", true, "Prevents skipping dialog too fast by holding the skip button.");
-            LockDelay = Config.Bind("General", "LockDelay", 200, "Delay in milliseconds after skipping dialog before the skip button can be used again if LockAfterSkip is enabled and the skip button is held down.");
+            LockAfterSkip = Config.Bind("General", "LockAfterSkip", true, "Prevents skipping FMHJNNGPMKG too fast by holding the skip button.");
+            LockDelay = Config.Bind("General", "LockDelay", 200, "Delay in milliseconds after skipping FMHJNNGPMKG before the skip button can be used again if LockAfterSkip is enabled and the skip button is held down.");
         }
 
         private void OnEnable()
@@ -50,29 +50,29 @@ namespace ShutUp
         private static bool _lock = false;
         private static long _lastSkip = 0;
         
-        [HarmonyPatch(typeof(DNMADBBLNDC), nameof(DNMADBBLNDC.CFFHMHNAKLF))]
+        [HarmonyPatch(typeof(FMHJNNGPMKG), nameof(FMHJNNGPMKG.HECHPCGFPFI))]
         [HarmonyPostfix]
-        private static void DNMADBBLNDC_CFFHMHNAKLF()
+        private static void FMHJNNGPMKG_HECHPCGFPFI()
         {
-            KDOHFMKNHOB obj = IODAJCMGILB.LEGPGICAAJI[IODAJCMGILB.FOOBAJOCOAK];
-            if (DNMADBBLNDC.PDMDFGNJCPN > 0 && DNDIEGNJOKN.OBNLIIMODBI == 50 && AMJONEKIAID.NCPIJJFEDFL[DNMADBBLNDC.PDMDFGNJCPN].LKGAHNBHMAE.AHPNDLJNCFK >= 5)
+            IMBAMKCPLIF obj = MFCAJFKKFFE.FBOPLHBCBFI[MFCAJFKKFFE.OMPNDJNOOIF];
+            if (FMHJNNGPMKG.CJGHFHCHDNN > 0 && JJDCNALMPCI.AAAIDOOHBCM == 50 && FFKMIEMAJML.FJCOPECCEKN[FMHJNNGPMKG.CJGHFHCHDNN].GHDPNAGKOCP.FNIDHNNCLBB >= 5)
             {
-                obj = AMJONEKIAID.NCPIJJFEDFL[DNMADBBLNDC.PDMDFGNJCPN].LKGAHNBHMAE;
+                obj = FFKMIEMAJML.FJCOPECCEKN[FMHJNNGPMKG.CJGHFHCHDNN].GHDPNAGKOCP;
             }
-            if (DNMADBBLNDC.IGIEBCJHBLP == 0)
+            if (FMHJNNGPMKG.DFKDIOPDOIN == 0)
             {
                 int num2 = 0;
-                if (obj.HFEHAADPDHP[1] != 0 || obj.HFEHAADPDHP[2] != 0 || obj.HFEHAADPDHP[3] != 0 || obj.HFEHAADPDHP[4] != 0 || obj.IIJHBGKCENJ != 0 || obj.ALAAHPKCGJG != 0)
+                if (obj.HNGCFDLDGBF[1] != 0 || obj.HNGCFDLDGBF[2] != 0 || obj.HNGCFDLDGBF[3] != 0 || obj.HNGCFDLDGBF[4] != 0 || obj.HGLNBKOFGDO != 0 || obj.HKPDEHMCKIO != 0)
                 {
                     num2 = 1;
                 }
-                if (((Math.Abs(IODAJCMGILB.DHLELODFJHB - 1f) < 0.0001f && IODAJCMGILB.NIALJKKHMNI < Screen.height * 0.3f) || num2 != 0 || Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(0)) && IODAJCMGILB.DBEEFCPGGCP == 0f)
+                if (((Math.Abs(MFCAJFKKFFE.OIOEJJAMHKB - 1f) < 0.0001f && MFCAJFKKFFE.LCNKDGDGJJI < Screen.height * 0.3f) || num2 != 0 || Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(0)) && MFCAJFKKFFE.JOPPDHFINKD == 0f)
                 {
                     if (!LockAfterSkip.Value || !_lock ||
                         (DateTime.Now.Ticks / 10000) - _lastSkip > LockDelay.Value)
                     {
-                        DNMADBBLNDC.BABHEGOMNLJ++;
-                        DNMADBBLNDC.GKDOOPDCBMD = 0f;
+                        FMHJNNGPMKG.NJJPPLCPOIA++;
+                        FMHJNNGPMKG.AMBGCJOBKFN = 0f;
                         if (LockAfterSkip.Value)
                         {
                             _lock = true;
