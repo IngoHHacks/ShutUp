@@ -14,7 +14,7 @@ namespace ShutUp
     {
         public const string PluginGuid = "IngoH.WrestlingEmpire.ShutUp";
         public const string PluginName = "ShutUp";
-        public const string PluginVer = "1.3.0";
+        public const string PluginVer = "1.4.0";
 
         internal static ManualLogSource Log;
         internal readonly static Harmony Harmony = new(PluginGuid);
@@ -31,8 +31,8 @@ namespace ShutUp
 
             PluginPath = Path.GetDirectoryName(Info.Location);
             
-            LockAfterSkip = Config.Bind("General", "LockAfterSkip", true, "Prevents skipping FMHJNNGPMKG too fast by holding the skip button.");
-            LockDelay = Config.Bind("General", "LockDelay", 200, "Delay in milliseconds after skipping FMHJNNGPMKG before the skip button can be used again if LockAfterSkip is enabled and the skip button is held down.");
+            LockAfterSkip = Config.Bind("General", "LockAfterSkip", true, "Prevents skipping dialog too fast by holding the skip button.");
+            LockDelay = Config.Bind("General", "LockDelay", 200, "Delay in milliseconds after skipping dialog before the skip button can be used again if LockAfterSkip is enabled and the skip button is held down.");
         }
 
         private void OnEnable()
@@ -50,40 +50,52 @@ namespace ShutUp
         private static bool _lock = false;
         private static long _lastSkip = 0;
         
-        [HarmonyPatch(typeof(FMHJNNGPMKG), nameof(FMHJNNGPMKG.HECHPCGFPFI))]
+        [HarmonyPatch(typeof(NEGAFEHECNL), nameof(NEGAFEHECNL.GPPKMBAODNL))]
         [HarmonyPostfix]
-        private static void FMHJNNGPMKG_HECHPCGFPFI()
+        private static void NEGAFEHECNL_GPPKMBAODNL()
         {
-            IMBAMKCPLIF obj = MFCAJFKKFFE.FBOPLHBCBFI[MFCAJFKKFFE.OMPNDJNOOIF];
-            if (FMHJNNGPMKG.CJGHFHCHDNN > 0 && JJDCNALMPCI.AAAIDOOHBCM == 50 && FFKMIEMAJML.FJCOPECCEKN[FMHJNNGPMKG.CJGHFHCHDNN].GHDPNAGKOCP.FNIDHNNCLBB >= 5)
+            try
             {
-                obj = FFKMIEMAJML.FJCOPECCEKN[FMHJNNGPMKG.CJGHFHCHDNN].GHDPNAGKOCP;
-            }
-            if (FMHJNNGPMKG.DFKDIOPDOIN == 0)
-            {
-                int num2 = 0;
-                if (obj.HNGCFDLDGBF[1] != 0 || obj.HNGCFDLDGBF[2] != 0 || obj.HNGCFDLDGBF[3] != 0 || obj.HNGCFDLDGBF[4] != 0 || obj.HGLNBKOFGDO != 0 || obj.HKPDEHMCKIO != 0)
+                BJMGCKGNCHO obj = HKJOAJOKOIJ.NAADDLFFIHG[HKJOAJOKOIJ.EMLDNFEIKCK];
+                if (NEGAFEHECNL.NNMDEFLLNBF > 0 && LIPNHOMGGHF.FAKHAFKOBPB == 50 &&
+                    NJBJIIIACEP.OAAMGFLINOB[NEGAFEHECNL.NNMDEFLLNBF].NLOOBNDGIKO.BPJFLJPKKJK >= 5)
                 {
-                    num2 = 1;
+                    obj = NJBJIIIACEP.OAAMGFLINOB[NEGAFEHECNL.NNMDEFLLNBF].NLOOBNDGIKO;
                 }
-                if (((Math.Abs(MFCAJFKKFFE.OIOEJJAMHKB - 1f) < 0.0001f && MFCAJFKKFFE.LCNKDGDGJJI < Screen.height * 0.3f) || num2 != 0 || Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(0)) && MFCAJFKKFFE.JOPPDHFINKD == 0f)
+
+                if (NEGAFEHECNL.EJFHLGMHAHB == 0)
                 {
-                    if (!LockAfterSkip.Value || !_lock ||
-                        (DateTime.Now.Ticks / 10000) - _lastSkip > LockDelay.Value)
+                    int num2 = 0;
+                    if (obj.IOIJFFLMBCH[1] != 0 || obj.IOIJFFLMBCH[2] != 0 || obj.IOIJFFLMBCH[3] != 0 ||
+                        obj.IOIJFFLMBCH[4] != 0 || obj.FHBEOIPFFDA != 0 || obj.OHEIJEDGKLJ != 0)
                     {
-                        FMHJNNGPMKG.NJJPPLCPOIA++;
-                        FMHJNNGPMKG.AMBGCJOBKFN = 0f;
-                        if (LockAfterSkip.Value)
+                        num2 = 1;
+                    }
+
+                    if (((Math.Abs(HKJOAJOKOIJ.EOOBMIDCKIF - 1f) < 0.0001f &&
+                          HKJOAJOKOIJ.MINFPCEENFN < Screen.height * 0.3f) || num2 != 0 ||
+                         Input.GetKey(KeyCode.Escape) || Input.GetMouseButton(0)) && HKJOAJOKOIJ.LMADDGDMBGB == 0f)
+                    {
+                        if (!LockAfterSkip.Value || !_lock ||
+                            (DateTime.Now.Ticks / 10000) - _lastSkip > LockDelay.Value)
                         {
-                            _lock = true;
-                            _lastSkip = DateTime.Now.Ticks / 10000;
+                            NEGAFEHECNL.ODOAPLMOJPD++;
+                            NEGAFEHECNL.IMJHCHECCED = 0f;
+                            if (LockAfterSkip.Value)
+                            {
+                                _lock = true;
+                                _lastSkip = DateTime.Now.Ticks / 10000;
+                            }
                         }
                     }
+                    else if (LockAfterSkip.Value)
+                    {
+                        _lock = false;
+                    }
                 }
-                else if (LockAfterSkip.Value)
-                {
-                    _lock = false;
-                }
+            } catch (Exception e)
+            {
+                _lock = false;
             }
         }
     }
