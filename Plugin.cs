@@ -14,13 +14,14 @@ namespace ShutUp
     {
         public const string PluginGuid = "IngoH.WrestlingEmpire.ShutUp";
         public const string PluginName = "ShutUp";
-        public const string PluginVer = "1.4.0";
+        public const string PluginVer = "1.5.0";
 
         internal static ManualLogSource Log;
         internal readonly static Harmony Harmony = new(PluginGuid);
         
         internal static ConfigEntry<bool> LockAfterSkip;
         internal static ConfigEntry<int> LockDelay;
+        internal static ConfigEntry<int> FirstPageDelay;
 
         internal static string PluginPath;
         
@@ -32,7 +33,8 @@ namespace ShutUp
             PluginPath = Path.GetDirectoryName(Info.Location);
             
             LockAfterSkip = Config.Bind("General", "LockAfterSkip", true, "Prevents skipping dialog too fast by holding the skip button.");
-            LockDelay = Config.Bind("General", "LockDelay", 200, "Delay in milliseconds after skipping dialog before the skip button can be used again if LockAfterSkip is enabled and the skip button is held down.");
+            LockDelay = Config.Bind("General", "LockDelay", 500, "Delay in milliseconds after skipping dialog before the skip button can be used again if LockAfterSkip is enabled and the skip button is held down.");
+            FirstPageDelay = Config.Bind("General", "FirstPageDelay", 45, "Delay in frames before the first page can be skipped. Set to -15 to disable. (Pages start at -15 to delay showing the first page.)");
         }
 
         private void OnEnable()
@@ -54,6 +56,9 @@ namespace ShutUp
         [HarmonyPostfix]
         private static void NEGAFEHECNL_GPPKMBAODNL()
         {
+            if (NEGAFEHECNL.IMJHCHECCED < FirstPageDelay.Value && NEGAFEHECNL.ODOAPLMOJPD == 1) {
+                return;
+            }
             try
             {
                 BJMGCKGNCHO obj = HKJOAJOKOIJ.NAADDLFFIHG[HKJOAJOKOIJ.EMLDNFEIKCK];
@@ -93,7 +98,7 @@ namespace ShutUp
                         _lock = false;
                     }
                 }
-            } catch (Exception e)
+            } catch (Exception)
             {
                 _lock = false;
             }

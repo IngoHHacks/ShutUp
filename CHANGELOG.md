@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+- Added protection for accidentally skipping dialog on the first 'page'. (Configurable)
+- Increased default delay to 500ms.
+
 ## 1.4.0
 - UPDATE TO GAME VERSION 1.60
 
