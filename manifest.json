@@ -2,7 +2,7 @@
   "namespace": "IngoH",
   "name": "ShutUp",
   "description": "Allows the player to skip all the dialog (dialogue) in the game faster than the normal speed.",
-  "version_number": "1.4.0",
+  "version_number": "1.5.1",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2100"
   ],

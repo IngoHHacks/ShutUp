@@ -14,7 +14,7 @@ namespace ShutUp
     {
         public const string PluginGuid = "IngoH.WrestlingEmpire.ShutUp";
         public const string PluginName = "ShutUp";
-        public const string PluginVer = "1.5.0";
+        public const string PluginVer = "1.5.1";
 
         internal static ManualLogSource Log;
         internal readonly static Harmony Harmony = new(PluginGuid);
@@ -57,6 +57,9 @@ namespace ShutUp
         private static void NEGAFEHECNL_GPPKMBAODNL()
         {
             if (NEGAFEHECNL.IMJHCHECCED < FirstPageDelay.Value && NEGAFEHECNL.ODOAPLMOJPD == 1) {
+                return;
+            }
+            if (NEGAFEHECNL.ODOAPLMOJPD == 6 && NEGAFEHECNL.IMJHCHECCED <= 25f && NEGAFEHECNL.LODPJDDLEKI >= 801 && NEGAFEHECNL.LODPJDDLEKI < 850) {
                 return;
             }
             try

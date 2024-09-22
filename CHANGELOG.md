@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.5.1
+- Court cases will now be prevented from having their dialog skipped before the results are applied.
+
 ## 1.5.0
 - Added protection for accidentally skipping dialog on the first 'page'. (Configurable)
 - Increased default delay to 500ms.
